@@ -1,0 +1,34 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import urllib
+import re
+
+def leer_pagina():
+    Pagina = urllib.urlopen("http://www.finanzas.com/cotizaciones/telefonica/")
+    ContenidoPagina = Pagina.read()
+    Pagina.close()
+    return ContenidoPagina
+
+def obtener_cotizacion(ContenidoPagina):
+    pattern = re.compile('title=.TELEFONICA.>TELEFONICA<.a> .TEF.*\n      .*\n    .*\n    .*</time><span>[0-9],[0-9][0-9]')
+    info_pagina = re.findall(pattern,ContenidoPagina)
+    array_cotizacion = re.split('</time><span>',info_pagina[0])
+    return array_cotizacion
+
+def obtener_hora(ContenidoPagina):
+    pattern = re.compile('title=.TELEFONICA.>TELEFONICA<.a> .TEF.*\n      .*\n    .*\n    .*<time>[0-2]\d:[0-5]\d h')
+    info_pagina = re.findall(pattern,ContenidoPagina)
+    array_hora = re.split('<time>',info_pagina[0])
+    m=8
+    return array_hora
+
+def cotizacion():
+    ContenidoPagina = leer_pagina()
+    array_hora = obtener_hora(ContenidoPagina)
+    array_cotizacion = obtener_cotizacion(ContenidoPagina)
+    cotizacion = array_cotizacion[1:]
+    hora = array_hora[1:]
+    return cotizacion,hora
+    
+    
