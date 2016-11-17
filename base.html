@@ -1,0 +1,25 @@
+<html>
+    <head>
+    {% if title %}
+    <title>Cotizacion {{ title }}</title>
+    {% else %}
+    <title>Cotizacion</title>
+    {% endif %} 
+    </head>
+    <body 
+        style="background-color: rgb(204, 204, 255); color: rgb(0, 0, 0);"alink="#ee0000" link="#0000ee" vlink="#551a8b">
+	<p style="text-align: center;"><img style="width: 311px; height: 111px;" alt="Telefonica" src="logo_telefonica_azul.png"></p>
+
+        
+	{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }} </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+	{% block content %}{% endblock %}
+    </body>
+</html>
