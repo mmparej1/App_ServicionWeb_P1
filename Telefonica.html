@@ -1,0 +1,68 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+ 
+{% block content %}</pre>
+    <h1>Cotizacion</h1>
+<div>
+    <form action="/Telefonica" method="post" name="login">
+        {{ form.hidden_tag() }}
+        <p><input class="inp" type="submit" value="Enviar umbral" name="n_umbral">
+            <!--Introduzca un umbral:-->
+            {{ form.openid(size=20) }}
+            {% for error in form.openid.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br>
+        
+
+        </p>
+    </form>
+    <form action="/Telefonica" method="post" name="f_media">
+	
+	<p><input class="inp" type="submit" value="Media" name="n_media" id="id_media"></p>
+
+    </form>
+    <form action="https://beebotte.com/dash/62830050-b6e4-11e6-9d38-c733e0bdc86c#.WD6kdPnhDIV" method="get" name="f_media">
+	<p><input class="inp" type="submit" value="Graficas" name="n_graficas" id="id_media"></p>
+
+    </form>
+</div>
+
+    {% if comp %}
+    <p>{{bd_umbral}}</p>
+	<table>
+  	<tr>
+    	<th strong>Cotizacion</strong></th>
+    	<th><strong>Dia</strong></th>
+    	<th><strong>Hora</strong></th>
+  	</tr>
+    {% else %}
+     
+    {% endif %} 
+
+	
+
+	{% for dato in comp %} 
+	<tr >
+    	<th>{{ dato.valor }}</th>
+    	<th>{{ dato.fecha.dia}}</th>
+    	<th>{{ dato.fecha.hora }}</th>
+  	</tr>        
+	{% endfor %}
+
+
+	</table>
+	<p> {{v}}</p>
+	<p> {{h}}</p>
+	<p> {{d}}</p>
+
+
+        
+
+	<p strong>{{bd_media}}</p>
+        <p>{{avg}}</p>
+
+
+
+
+
+{% endblock %}

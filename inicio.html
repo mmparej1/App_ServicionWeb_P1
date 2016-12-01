@@ -1,27 +1,18 @@
-<!-- extend base layout -->
-{% extends "base.html" %}
- 
-{% block content %}</pre>
-    <h1>Cotizacion</h1>
-    <form action="/" method="post" name="login">
-        {{ form.hidden_tag() }}
-        <p>
-            Introduzca un umbral:
-            {{ form.openid(size=20) }}
-            {% for error in form.openid.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}<br>
-        </p>
-        <p>{{ form.remember_me }} Remember Me</p>
-        <p><input type="submit" value="Enviar umbral"></p>
-        
-    </form>
-    <form action="/" method="post" name="f_media">
-	<p><input type="submit" value="Media" name="n_media" id="id_media"></p>
-        <p>{{avg}}</p>
-    </form>
-    <form action="/" method="post" name="f_media">
-	<p><input type="submit" value="Graficas" name="n_login" id="id_media"></p>
-        <p>{{avg}}</p>
-    </form>
-{% endblock %}
+<html>
+    <head>
+    {% if title %}
+    <title>Cotizacion {{ title }}</title>
+    {% else %}
+    <title>Cotizacion</title>
+    {% endif %} 
+    </head>
+    <body 
+	style="background-color: rgb(204, 204, 255); color: rgb(0, 0, 0);"alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+    	<form action="/Telefonica" method="post" name="f_media">
+		<p style="text-align: center; vertical-align:middle;"><input type="image" value="Telefonica" name="n_telefonica" id="id_media" src="/static/logo.png"></p>
+
+
+    	</form>
+    </body>
+</html>
