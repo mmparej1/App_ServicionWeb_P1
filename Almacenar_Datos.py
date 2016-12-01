@@ -3,7 +3,9 @@
 
 import pymongo
 from ExpresionesRegulares import cotizacion
-from db_onlineC import base_dato_write
+from db_online import base_dato_write,base_dato_read
+from calculos import media
+
 
 ########### DB LOCAL ##########################
 # Connection to Mongo DB
@@ -21,12 +23,17 @@ db = conn.cotizaciones
 #Asignamos la collecion 'mycollection' de la base de datos 'mydb' a la variable 'coll'
 coll= db.telefonica
 
-valor,hora,dia = cotizacion()
+#Borrar toda la coleccion
+#db.coll.remove()
 
+
+
+valor,hora,dia = cotizacion()
+print valor
 # Insertamos un documento creandolo en el momento
 result = db.coll.insert_one(
     {
-        "valor": valor[0],
+        "valor": valor,
         "fecha": 
             {
                 "dia": dia[0],
@@ -35,10 +42,8 @@ result = db.coll.insert_one(
     }
 )
 
-#cursor = db.coll.find()
-#for document in cursor:
-#    print(document)
+
 
 ################ DB ONLINE ########################
 
-base_dato_write(valor[0],hora[0],dia[0])
+base_dato_write(valor,hora[0],dia[0])

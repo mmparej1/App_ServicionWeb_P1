@@ -2,6 +2,7 @@
 
 import urllib
 import re
+from UserString import MutableString
 
 def leer_pagina():
     Pagina = urllib.urlopen("http://www.finanzas.com/cotizaciones/telefonica/")
@@ -27,6 +28,9 @@ def cotizacion():
     array_hora,array_dia = obtener_fecha(ContenidoPagina)
     array_cotizacion = obtener_cotizacion(ContenidoPagina)
     cotizacion = array_cotizacion[1:]
+    cotizacion =  MutableString(cotizacion[0])
+    cotizacion[1]='.'
+    cotizacion =  float(cotizacion)
     hora = array_hora[1:]
     dia = array_dia[1:]
     return cotizacion,hora,dia
